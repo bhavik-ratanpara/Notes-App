@@ -3,11 +3,11 @@ const createBtn = document.querySelector(".btn");
 let notes = document.querySelectorAll(".input-box");
  
 function showNotes(){
-    notesContainer.textContent = localStorage.getItem("notes");
+    notesContainer.innerHTML = localStorage.getItem("notes");
 }
 showNotes();
 function updateStorage(){
-    localStorage.setItem("notes", notesContainer.textContent);
+    localStorage.setItem("notes", notesContainer.innerHTML);
 }
 createBtn.addEventListener("click", () => {
     let inputBox = document.createElement("p");
@@ -34,5 +34,6 @@ notesContainer.addEventListener("click", function(e){
         })
     }
 })
+
 
 
