@@ -1,39 +1,41 @@
 const notesContainer = document.querySelector(".notes-container");
 const createBtn = document.querySelector(".btn");
-let notes = document.querySelectorAll(".input-box");
- 
-function showNotes(){
-    notesContainer.innerHTML = localStorage.getItem("notes");
+
+function showNotes() {
+    notesContainer.innerHTML = localStorage.getItem("notes") || "";
 }
 showNotes();
-function updateStorage(){
+
+function updateStorage() {
     localStorage.setItem("notes", notesContainer.innerHTML);
 }
+
+// Create a new note
 createBtn.addEventListener("click", () => {
-    let inputBox = document.createElement("p");
+    let inputBox = document.createElement("div"); // Changed to div
     let img = document.createElement("img");
+
     inputBox.className = "input-box";
     inputBox.setAttribute("contenteditable", "true");
+
     img.src = "images/delete.png";
     img.className = "delete-icon";
+
     inputBox.appendChild(img);
     notesContainer.appendChild(inputBox);
+
+    updateStorage();
 });
 
-notesContainer.addEventListener("click", function(e){
-    if(e.target.tagName === "IMG"){
-        e.target.parentElement.remove(); 
-        updateStorage( );
+// Handle delete and typing
+notesContainer.addEventListener("click", function(e) {
+    if (e.target.tagName === "IMG") {
+        e.target.parentElement.remove();
+        updateStorage();
     }
-    else if(e.target.tagName === "P"){
-        notes = document.querySelectorAll(".input-box");
-        notes.forEach(nt => {
-            nt.onkeyup = function(){
-                updateStorage();
-            }
-        })
-    }
-})
+});
 
-
-
+// Save on typing in any note
+notesContainer.addEventListener("keyup", function() {
+    updateStorage();
+});
