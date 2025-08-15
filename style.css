@@ -8,9 +8,7 @@
 .container {
     width: 100%;
     min-height: 100vh;
-    /* Animated gradient background */
     background: linear-gradient(135deg, #d38312, #a83279, #614385, #516395, #c79081);
-
     background-size: 400% 400%;
     animation: gradient-motion 15s ease infinite;
     color: #010001;
@@ -19,15 +17,9 @@
 }
 
 @keyframes gradient-motion {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .container h1 {
@@ -61,16 +53,23 @@
 }
 
 .input-box {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: break-word;
     position: relative;
     width: 100%;
     max-width: 500px;
     min-height: 150px;
+    max-height: 400px;
+    overflow-y: auto;
     background: #fff;
     color: #333;
     padding: 20px;
     margin: 20px 0;
     outline: none;
     border-radius: 5px;
+    box-sizing: border-box;
+    display: block; /* FIX: ensures each note is on its own line */
 }
 
 .input-box img {
@@ -80,3 +79,4 @@
     right: 15px;
     cursor: pointer;
 }
+
